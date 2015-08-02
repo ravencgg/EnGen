@@ -1,0 +1,24 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd":
+			[
+				"build.bat"
+			],
+			"name": "MSVC",
+			"working_dir": "$project_path"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "..\\EnGen\\",
+            "folder_exclude_patterns": ["Debug", "Release", "Dependencies"],
+            "file_exclude_patterns": ["*.vcxproj", "*.filters", "*.user", "*.aps"]
+		},
+		{
+			"path": "..\\Release\\res"
+		}
+	]
+}
