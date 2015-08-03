@@ -14,7 +14,7 @@ void Game::Run(sf::RenderWindow* window)
 {
 	sf::Vector2u screenSize = window->getSize();
 
-	sf::View view(Vec2(0, 0), Vec2((float)screenSize.x, (float)screenSize.y));
+	sf::View view(Vec2(0, 0), Vec2((float)screenSize.x * metersPerPixel, (float)screenSize.y * metersPerPixel));
 	//sf::View view(Vec2(0, 0), Vec2(16.f, 9.f));
 	std::vector<std::unique_ptr<sf::Shape>> shapes;
 

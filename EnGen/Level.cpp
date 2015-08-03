@@ -41,27 +41,15 @@ void Level::Update(float dt)
 		for (int32 x = 0; x < width; ++x)
 		{
 			int32 l = x + y * width;
-			grid[l]->setSize(Vec2(30.f, 30.f));
+			grid[l]->setSize(Vec2(1, 1));
 			grid[l]->setFillColor(sf::Color(0, 0, 0, 0));
 			grid[l]->setOutlineColor(sf::Color(0, 255, 255, 180));
-			grid[l]->setOutlineThickness(4.f);
-			position.x = (float)x * 30.f;
-			position.y = (float)y * 30.f;
+			grid[l]->setOutlineThickness(1.f * metersPerPixel);
+			position.x = (float)x;
+			position.y = (float)y;
 			grid[l]->setPosition(position);
 
 			this->AddDebugShape(grid[l]);
-
-			//shape->setSize(Vec2(30.f, 30.f));
-			//shape->setFillColor(sf::Color(0, 0, 0, 0));
-			//shape->setOutlineColor(sf::Color(0, 255, 255, 180));
-			//shape->setOutlineThickness(4.f);
-			//position.x = (float)x * 30.f;
-			//position.y = (float)y * 30.f;
-			//shape->setPosition(position);
-
-			//this->AddDebugShape(std::shared_ptr<sf::Shape> (&grid[l]));
-			//this->AddDebugShape(std::);
-			//window->draw(grid[l]);
 		}
 	}
 }

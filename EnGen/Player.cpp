@@ -7,19 +7,18 @@ Player::Player(Scene* parent)
 {
 	sprite->setPosition(0, 0);
 	sprite->setTextureRect(sf::IntRect(21, 904, 26, 32));
-	//sprite->setTextureRect(sf::IntRect(17, 903, 100, 100));
+	sprite->setScale(metersPerPixel, metersPerPixel);
     drawLayer = DrawLayer::PLAYER;
 	parentScene = parent;
 
 	sf::FloatRect fr = sprite->getLocalBounds();
 
 	collisionRect = std::make_shared<sf::RectangleShape>();
-	collisionRect->setSize(Vec2(100.f, 100.f));
 	collisionRect->setFillColor(sf::Color(0, 0, 0, 0));
 	collisionRect->setOutlineColor(sf::Color(50, 50, 150, 250));
 	collisionRect->setOutlineThickness(0.1f);
-	Vec2 size(fr.width * 2, fr.height * 2);
-	collisionRect->setSize(size);
+	Vec2 size(fr.width, fr.height);
+	collisionRect->setSize(size * metersPerPixel);
 }
 
 Player::~Player()
@@ -31,14 +30,8 @@ void Player::Update(float dt)
 	static float time = 0;
 	time += dt;
 
-	//float scale = (sin(time) + 2) * 2;
-	float scale = 2.f;
-	sprite->setScale(scale, scale);
-	//sprite->setPosition((float)cos(time) * 200.f, (float)sin(time) * 200.f);
-	//sprite->setPosition((float)cos(time / 2.f) * 400.f, 0);
-
 	Vec2 velocity(0, 0);
-	float speed = 400.f;
+	float speed = 4.f;
 
 	Input* input = Input::Get();
 
