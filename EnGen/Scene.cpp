@@ -18,3 +18,8 @@ void Scene::AddDrawable(std::shared_ptr<sf::Sprite> sprite, DrawLayer::Enum dl)
 {
 	sprites[dl].push_back(sprite);
 }
+
+void Scene::AddDebugShape(std::shared_ptr<sf::Shape> shape)
+{
+	debugShapes.push_back(shape);
+}

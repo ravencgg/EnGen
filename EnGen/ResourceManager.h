@@ -7,6 +7,13 @@
 #include <string>
 #include <assert.h>
 
+#ifdef _DEBUG
+const std::string res_path("./../Release/res/");
+#elif _NDEBUG
+const std::string res_path("./res/");
+#endif
+
+
 namespace Resources
 {
 	enum TexFiles { TILE_IMG, ANIMATION_IMG, IMG_FILE_COUNT };

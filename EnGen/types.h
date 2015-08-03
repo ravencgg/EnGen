@@ -19,12 +19,10 @@ typedef int8_t bool8;
 typedef int16_t bool16;
 typedef int32_t bool32;
 
-// Maybe don't put this here
-#ifdef _DEBUG
-const std::string res_path("./../Release/res/");
-#elif _NDEBUG
-const std::string res_path("./res/");
-#endif
+typedef sf::Vector2f Vec2;
+
+const float pixelsPerMeter = 30.f;
+const float metersPerPixel = 1.f / pixelsPerMeter;
 
 namespace DrawLayer
 {

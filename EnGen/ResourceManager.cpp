@@ -18,6 +18,7 @@ ResourceManager::ResourceManager()
 		assert(!"Broken!");
 	}
 
+	textures[Resources::TILE_IMG].setSmooth(true);
 	textures[Resources::ANIMATION_IMG].setSmooth(true);
 }
 
