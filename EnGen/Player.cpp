@@ -3,13 +3,17 @@
 #include "scene.h"
 
 Player::Player(Scene* parent)
-	: sprite(new sf::Sprite(*ResourceManager::Get()->GetTexture(Resources::ANIMATION_IMG)))
+    : Entity(new sf::Sprite(*ResourceManager::Get()->GetTexture(Resources::ANIMATION_IMG)), parent)
 {
 	sprite->setPosition(0, 0);
 	sprite->setTextureRect(sf::IntRect(21, 904, 26, 32));
 	sprite->setScale(metersPerPixel, metersPerPixel);
     drawLayer = DrawLayer::PLAYER;
-	parentScene = parent;
+
+    entityTag = EntityTag::PLAYER;
+
+    // Done in the entity constructor now.
+	// parentScene = parent;
 
 	sf::FloatRect fr = sprite->getLocalBounds();
 
@@ -17,7 +21,7 @@ Player::Player(Scene* parent)
 	collisionRect->setFillColor(sf::Color(0, 0, 0, 0));
 	collisionRect->setOutlineColor(sf::Color(50, 50, 150, 250));
 	collisionRect->setOutlineThickness(0.1f);
-	Vec2 size(fr.width, fr.height);
+	sf::Vector2f size(fr.width, fr.height);
 	collisionRect->setSize(size * metersPerPixel);
 }
 
@@ -27,29 +31,33 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
-	static float time = 0;
-	time += dt;
-
-	Vec2 velocity(0, 0);
+    Input* input = Input::Get();
 	float speed = 4.f;
-
-	Input* input = Input::Get();
 
 	if (input->IsDown(sf::Keyboard::A))
 	{
 		velocity.x = -speed * dt;
 	}
-	if (input->IsDown(sf::Keyboard::D))
+	else if (input->IsDown(sf::Keyboard::D))
 	{
 		velocity.x = speed * dt;
 	}
+	else
+	{
+		velocity.x = 0;
+	}
+
 	if (input->IsDown(sf::Keyboard::W))
 	{
 		velocity.y = speed * dt;
 	}
-	if (input->IsDown(sf::Keyboard::S))
+	else if (input->IsDown(sf::Keyboard::S))
 	{
 		velocity.y = -speed * dt;
+	}
+	else
+	{
+		velocity.y = 0;
 	}
 
 	std::string playerPos("Player pos: ");
@@ -71,7 +79,8 @@ void Player::Update(float dt)
 
 	if (draw)
 	{
-		collisionRect->setPosition(this->position);
+		sf::Vector2f pos(position.x, position.y);
+		collisionRect->setPosition(pos);
 		parentScene->AddDebugShape(collisionRect);
 	}
 }

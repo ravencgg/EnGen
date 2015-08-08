@@ -10,14 +10,15 @@
 
 class Scene;
 
-class Player : public Entity
+class Enemy : public Entity
 {
 public:
-	Player(Scene*);
-	virtual ~Player();
+	Enemy(Scene*);
+	virtual ~Enemy();
 
-	void Update(float) override;
+
+    void Update(float) override;
 
 private:
-
+    std::weak_ptr<Entity> player;
 };

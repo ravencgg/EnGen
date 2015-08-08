@@ -17,6 +17,15 @@ const std::string res_path("./res/");
 namespace Resources
 {
 	enum TexFiles { TILE_IMG, ANIMATION_IMG, IMG_FILE_COUNT };
+
+    enum BlockSprites { Stone = 0, HillTop, PlantLeft, PlantMiddle, PlantRight, Brick, MetalBlock, Axe,
+                        Chain, Fence, SilverPole, SilverTubeTL, SilverTubeTR, HillLeft, HillMiddle, HillRight, 
+                        HillBlank, HillMiddleR, CastleBlock, NumAssignedSprites};
+
+    const int tilesWidth = 13;
+    const int tilesHeight = 11;
+    const int tilesPadding = 1;
+	const int tilesPixelSize = 16;
 }
 
 namespace Files
@@ -31,8 +40,9 @@ public:
 	ResourceManager();
 	~ResourceManager();
 
-
 	sf::Texture* GetTexture(Resources::TexFiles);
+    sf::Sprite GetSpriteByName(Resources::BlockSprites sprite);
+    sf::Sprite* CreateSpriteByName(Resources::BlockSprites sprite);
 
 	static ResourceManager* Get();
 private:

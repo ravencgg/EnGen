@@ -29,11 +29,13 @@ public:
 
 	void AddDebugShape(std::shared_ptr<sf::Shape>);
 
+    std::weak_ptr<Entity> FindFirstEntityWithTag(EntityTag);
+
 protected:
 
 	// Consider making this a more polymorphic array
 	std::vector<std::shared_ptr<sf::Sprite>> sprites[DrawLayer::LAYER_COUNT];
 	std::vector<std::shared_ptr<sf::Shape>> debugShapes;
-	std::vector<std::unique_ptr<Entity>> entities;
+	std::vector<std::shared_ptr<Entity>> entities;
 };
 

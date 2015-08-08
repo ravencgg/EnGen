@@ -6,7 +6,7 @@
 			[
 				"build.bat"
 			],
-			"name": "MSVC",
+            "name": "MSVC",
 			"working_dir": "$project_path"
 		}
 	],
